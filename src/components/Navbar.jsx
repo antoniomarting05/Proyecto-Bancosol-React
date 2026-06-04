@@ -21,7 +21,7 @@ export default function Navbar() {
         return location.pathname.includes(path) ? "nav-item active" : "nav-item";
     };
 
-    //  añadir la clase 'disabled' si no es admin
+    //  añadir la clase disabled si no es admin
     const checkActiveWithRole = (path, requiereAdmin) => {
         let className = checkActive(path);
         if (requiereAdmin && !esAdmin) {

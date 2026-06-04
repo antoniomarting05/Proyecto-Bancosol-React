@@ -11,8 +11,9 @@ export const login = async (username, password) => {
         if (response.ok) {
             const data = await response.json();
             
+            console.log("Respuesta de Spring Boot:", data);
             if (data.token) {
-                localStorage.setItem('jwt_bancosol', data.token);
+                localStorage.setItem('token', data.token);
                 localStorage.setItem('usuario_nombre', data.usuario.nombre);
                 localStorage.setItem('usuario_rol', data.usuario.rol);
                 
@@ -29,14 +30,14 @@ export const login = async (username, password) => {
 };
 
 export const logout = () => {
-    localStorage.removeItem('jwt_bancosol');
+    localStorage.removeItem('token');
     localStorage.removeItem('usuario_nombre');
     localStorage.removeItem('usuario_rol');
     window.location.href = '/'; 
 };
 
 export const getToken = () => {
-    return localStorage.getItem('jwt_bancosol');
+    return localStorage.getItem('token');
 };
 
 export const getUsuarioNombre = () => {
