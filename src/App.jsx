@@ -1,23 +1,17 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css'
-import Navbar from './components/Navbar';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+
+import './assets/global.css';
+import { isAuthenticated } from './services/authService';
+
+import AppLayout from './components/AppLayout';
+
 
 function App() {
 
   return (
     <BrowserRouter>
-      
-      <Navbar />
-
-      <div className="page-content" style={{ padding: '20px' }}>
-        <Routes>
-          {/* Ruta temporal para comprobar que funciona */}
-          <Route path="/" element={<h1>Proyecto Bancosol - Bienvenido!</h1>} />
-          <Route path="/tiendas" element={<h1>Tiendas</h1>} />
-        </Routes>
-      </div>
-      
+      <AppLayout/>
     </BrowserRouter>
   );
 }

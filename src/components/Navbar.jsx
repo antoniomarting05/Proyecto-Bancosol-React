@@ -2,15 +2,39 @@ import { Link, useLocation } from 'react-router-dom';
 import './navbar.css';
 import logo from '/src/assets/LOGO_BANCOSOL.png';
 
-// uso module 
+import { logout } from '../services/authService';
 
 export default function Navbar() {
     const location = useLocation();
 
-    // Comprueba la ruta y devuelve el string con las clases normales
+    const nombreUsuario = localStorage.getItem('usuario_nombre') || 'Usuario';
+    const rolUsuario = localStorage.getItem('usuario_rol');
+    
+    // Sacamos la primera letra y la ponemos en mayúscula para el avatar
+    const inicial = nombreUsuario.charAt(0).toUpperCase();
+    
+    // Comprobamos si es administrador
+    const esAdmin = rolUsuario === 'ROLE_ADMIN';
+
+    //  marcar la pestaña activa
     const checkActive = (path) => {
         return location.pathname.includes(path) ? "nav-item active" : "nav-item";
     };
+
+    //  añadir la clase 'disabled' si no es admin
+    const checkActiveWithRole = (path, requiereAdmin) => {
+        let className = checkActive(path);
+        if (requiereAdmin && !esAdmin) {
+            className += " disabled";
+        }
+        return className;
+    };
+
+    const handleLogout = (e) => {
+        e.preventDefault(); // Evitamos que el navegador recargue o salte arriba
+        logout(); // Ejecutamos el borrado de JWT y la redirección
+    };
+
 
     return (
         <div className="main-header">
@@ -57,6 +81,13 @@ export default function Navbar() {
                         </Link>
                     </li>
                 </ul>
+
+                <div className="logout-section">
+                    <a href="#" className="logout-link" onClick={handleLogout}>
+                        <i className="ri-logout-box-r-line"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </div>
             </nav>
         </div>
     );
