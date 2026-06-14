@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from "../services/authService";
+import { useAuth } from '../auth/useAuthHook';
 import '../styles/auth.css'; 
 
 export default function LoginPage() {
@@ -11,6 +11,8 @@ export default function LoginPage() {
     
     // hook de react router pa cambiar de página sin recargar
     const navigate = useNavigate();
+
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Evita que el navegador recargue la página

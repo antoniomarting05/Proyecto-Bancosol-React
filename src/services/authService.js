@@ -1,8 +1,10 @@
-const API_URL = 'http://localhost:8080/api/auth/';
+import { BASE_URL } from "../config";
+
+const API_URL = `${BASE_URL}/auth`;
 
 export const login = async (username, password) => {
     try {
-        const response = await fetch(`${API_URL}login`, {
+        const response = await fetch(`${API_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }) 
@@ -13,10 +15,9 @@ export const login = async (username, password) => {
             
             console.log("Respuesta de Spring Boot:", data);
             if (data.token) {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('usuario_nombre', data.usuario.nombre);
-                localStorage.setItem('usuario_rol', data.usuario.rol);
-                
+                sessionStorage.setItem('token', data.token)
+                sessionStorage.setItem('user', JSON.stringify(data.usuario))
+
                 return true; 
             } else {
                 return false; 
@@ -30,18 +31,22 @@ export const login = async (username, password) => {
 };
 
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario_nombre');
-    localStorage.removeItem('usuario_rol');
-    window.location.href = '/'; 
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    window.location.href = '/';
 };
 
 export const getToken = () => {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
 };
 
 export const getUsuarioNombre = () => {
-    return localStorage.getItem('usuario_nombre');
+    const userGuardado = sessionStorage.getItem('user');
+    if (userGuardado) {
+        const userObj = JSON.parse(userGuardado);
+        return userObj.nombre;
+    }
+    return null;
 };
 
 export const isAuthenticated = () => {

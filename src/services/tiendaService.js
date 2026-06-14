@@ -1,6 +1,5 @@
 import { getToken, logout } from './authService';
-
-const API_BASE = 'http://localhost:8080/api';
+import { BASE_URL } from '../config';
 
 const getAuthHeaders = () => {
     return {
@@ -27,7 +26,7 @@ const handleResponse = async (response) => {
 // GET /api/tienda/ -> Listar todas
 export const getTiendas = async () => {
     try {
-        const response = await fetch(`${API_BASE}/tienda/`, {
+        const response = await fetch(`${BASE_URL}/tienda/`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -41,7 +40,7 @@ export const getTiendas = async () => {
 // GET /api/tienda/{id}
 export const buscarTienda = async (id) => {
     try {
-        const response = await fetch(`${API_BASE}/tienda/${id}`, {
+        const response = await fetch(`${BASE_URL}/tienda/${id}`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -60,7 +59,7 @@ export const filtrarTiendas = async (cadenaId, localidadId, zonaId) => {
         if (localidadId) params.append('localidadId', localidadId);
         if (zonaId) params.append('zonaId', zonaId);
 
-        const response = await fetch(`${API_BASE}/tienda/filtrar?${params.toString()}`, {
+        const response = await fetch(`${BASE_URL}/tienda/filtrar?${params.toString()}`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -74,7 +73,7 @@ export const filtrarTiendas = async (cadenaId, localidadId, zonaId) => {
 // POST /api/tienda/guardar -
 export const guardarTienda = async (dataTienda) => {
     try {
-        const response = await fetch(`${API_BASE}/tienda/guardar`, {
+        const response = await fetch(`${BASE_URL}/tienda/guardar`, {
             method: 'POST',
             headers: getAuthHeaders(),
             body: JSON.stringify(dataTienda) // Para el record
@@ -95,7 +94,7 @@ export const guardarTienda = async (dataTienda) => {
 // DELETE /api/tienda/eliminar/{id}
 export const eliminarTienda = async (idTienda) => {
     try {
-        const response = await fetch(`${API_BASE}/tienda/eliminar/${idTienda}`, {
+        const response = await fetch(`${BASE_URL}/tienda/eliminar/${idTienda}`, {
             method: 'DELETE',
             headers: getAuthHeaders()
         });
@@ -114,7 +113,7 @@ export const eliminarTienda = async (idTienda) => {
 // GET /api/cadenas/
 export const getCadenas = async () => {
     try {
-        const response = await fetch(`${API_BASE}/cadenas/`, {
+        const response = await fetch(`${BASE_URL}/cadenas/`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -128,7 +127,7 @@ export const getCadenas = async () => {
 // GET /api/zonas/
 export const getZonas = async () => {
     try {
-        const response = await fetch(`${API_BASE}/zonas/`, {
+        const response = await fetch(`${BASE_URL}/zonas/`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -142,7 +141,7 @@ export const getZonas = async () => {
 // GET /api/localidades/
 export const getLocalidades = async () => {
     try {
-        const response = await fetch(`${API_BASE}/localidades/`, {
+        const response = await fetch(`${BASE_URL}/localidades/`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -155,7 +154,7 @@ export const getLocalidades = async () => {
 
 export const getDistritos = async () => {
     try {
-        const response = await fetch(`${API_BASE}/distritos/`, {
+        const response = await fetch(`${BASE_URL}/distritos/`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -168,7 +167,7 @@ export const getDistritos = async () => {
 
 export const getMunicipios = async () => {
     try {
-        const response = await fetch(`${API_BASE}/municipios/`, {
+        const response = await fetch(`${BASE_URL}/municipios/`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -182,7 +181,7 @@ export const getMunicipios = async () => {
 // GET /api/usuarios/coordinadores
 export const getCoordinadores = async () => {
     try {
-        const response = await fetch(`${API_BASE}/usuarios/coordinadores`, {
+        const response = await fetch(`${BASE_URL}/usuarios/coordinadores`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -196,7 +195,7 @@ export const getCoordinadores = async () => {
 // GET /api/usuarios/capitanes
 export const getCapitanes = async () => {
     try {
-        const response = await fetch(`${API_BASE}/usuarios/capitanes`, {
+        const response = await fetch(`${BASE_URL}/usuarios/capitanes`, {
             method: 'GET',
             headers: getAuthHeaders()
         });
@@ -209,7 +208,7 @@ export const getCapitanes = async () => {
 
 export const getParticipacionesTienda = async (idTienda) => {
     try {
-        const response = await fetch(`http://localhost:8080/api/tienda/asignarParticipacion/${idTienda}`, {
+        const response = await fetch(`${BASE_URL}/${idTienda}`, {
             method: 'GET',
             headers: getAuthHeaders()
         });

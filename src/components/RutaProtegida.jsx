@@ -1,9 +1,11 @@
-import { Navigate } from 'react-router-dom';
-import { isAuthenticated } from '/src/services/authService';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../auth/useAuthHook';
 
 export default function RutaProtegida({ children }) {
-  if (!isAuthenticated()) {
+  const { estaAutenticado } = useAuth();
+
+  if (!estaAutenticado) {
     return <Navigate to="/login" replace />;
   }
-  return children;
+  return children ? children : <Outlet/>;
 }
