@@ -6,6 +6,7 @@ import LoginPage from '../pages/AuthPage';
 import TiendaPage from '../pages/TiendaPage';
 import CrearTienda from '../pages/CrearTiendaPage';
 import CoordinadoresPage from '../pages/CoordinadoresPage';
+import FormularioCoordinador from '../pages/FormularioCoordinador';
 import AsignacionTurnoPage from '../pages/AsignacionTurnoPage';
 import CrearTurnoPage from '../pages/CrearTurnoPage';
 
@@ -26,6 +27,8 @@ export default function AppLayout() {
           <Route path="/tiendas/crearTienda" element={<RutaProtegida><CrearTienda /></RutaProtegida>} />
           <Route path="/tiendas/verTienda" element={<RutaProtegida><CrearTienda /></RutaProtegida>} />
           <Route path="/coordinadores" element={<RutaProtegida><CoordinadoresPage /></RutaProtegida>} />
+          <Route path="/coordinadores/crearCoordinador" element={<RutaProtegida><FormularioCoordinador /></RutaProtegida>} />
+          <Route path="/coordinadores/editarCoordinador" element={<RutaProtegida><FormularioCoordinador /></RutaProtegida>} />
 		  
 		  <Route path="/asignacion_turno" element={<RutaProtegida><AsignacionTurnoPage /></RutaProtegida>} />
           <Route path="/turnos/crearTurno" element={<RutaProtegida><CrearTurnoPage /></RutaProtegida>} />
