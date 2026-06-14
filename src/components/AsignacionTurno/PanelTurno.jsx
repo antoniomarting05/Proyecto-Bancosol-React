@@ -1,4 +1,6 @@
 import { useTurnoEspecifico } from '../../hooks/useTurnoEspecifico';
+import { useAuth } from '../../auth/useAuthHook';
+
 
 export default function PanelTurno({ tiendaSeleccionada, linealesTotales, cerrarPanel }) {
     const {
@@ -6,9 +8,9 @@ export default function PanelTurno({ tiendaSeleccionada, linealesTotales, cerrar
         handleTurnoChange, handleLinealChange, handleCrearEditarTurno
     } = useTurnoEspecifico(tiendaSeleccionada);
 
-    const rolUsuario = localStorage.getItem('usuario_rol');
-    const puedeEditar = rolUsuario === 'ADMIN' || rolUsuario === 'COORD';
-
+ 	const rolUsuario = localStorage.getItem('usuario_rol');
+    const puedeEditar = ['ADMIN', 'COORD'].includes(rolUsuario);
+ 
     return (
         <div className={`right-column ${tiendaSeleccionada ? 'open' : ''}`}>
             <div id="info-container" className="card side-panel">
