@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:8080/api/auth/';
+import { BASE_URL } from '../config';
+
+const API_URL = `${BASE_URL}/auth`;
 
 export const login = async (username, password) => {
     try {
@@ -29,9 +31,9 @@ export const login = async (username, password) => {
 };
 
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario_nombre');
-    localStorage.removeItem('usuario_rol');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    
     window.location.href = '/'; 
 };
 
