@@ -31,6 +31,8 @@ export default function AppLayout() {
               <Route path="/tiendas/asignarParticipacion" element={<AsignarParticipacion />} />
 
               <Route path="/coordinadores" element={<CoordinadoresPage />} />
+			  <Route path="/coordinadores/crearCoordinador" element={<FormularioCoordinador />} />
+          	  <Route path="/coordinadores/editarCoordinador" element={<FormularioCoordinador />} />
           
               <Route path="/asignacion_turno" element={<AsignacionTurnoPage />} />
               <Route path="/turnos/crearTurno" element={<CrearTurnoPage />} />

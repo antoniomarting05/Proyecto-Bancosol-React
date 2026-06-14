@@ -77,8 +77,9 @@ body {
 }
 
 .table-container {
-    overflow-y: auto;
+    overflow: auto; /* Cambiamos overflow-y a overflow general para habilitar el scroll horizontal */
     padding: 0;
+    width: 100%; /* Aseguramos que tome el 100% de la columna que lo envuelve */
 }
 
 .modernTable {

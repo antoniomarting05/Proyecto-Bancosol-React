@@ -7,6 +7,8 @@ import '../styles/asignacion_turno.css';
 export default function AsignacionTurnoPage() {
     const navigate = useNavigate();
 
+
+
     // Estados para las tablas y combos
     const [asignaciones, setAsignaciones] = useState([]);
     const [tipoCampanyas, setTipoCampanyas] = useState([]);
@@ -49,6 +51,8 @@ export default function AsignacionTurnoPage() {
         };
         cargarDatos();
     }, []);
+
+
 
     // Manejar cambio en filtro "Tipo de Campaña"
     const handleTipoChange = async (e) => {
