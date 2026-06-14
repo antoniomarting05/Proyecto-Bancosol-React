@@ -1,6 +1,4 @@
-import { BASE_URL } from "../config";
-
-const API_URL = `${BASE_URL}/auth`;
+const API_URL = 'http://localhost:8080/api/auth/';
 
 export const login = async (username, password) => {
     try {
@@ -13,7 +11,7 @@ export const login = async (username, password) => {
         if (response.ok) {
             const data = await response.json();
             
-            console.log("Respuesta de Spring Boot:", data);
+            console.log("Respuesta del servidor:", data);
             if (data.token) {
                 sessionStorage.setItem('token', data.token)
                 sessionStorage.setItem('user', JSON.stringify(data.usuario))
@@ -31,9 +29,10 @@ export const login = async (username, password) => {
 };
 
 export const logout = () => {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
-    window.location.href = '/';
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario_nombre');
+    localStorage.removeItem('usuario_rol');
+    window.location.href = '/'; 
 };
 
 export const getToken = () => {

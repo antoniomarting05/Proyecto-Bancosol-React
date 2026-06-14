@@ -23,7 +23,6 @@ const handleResponse = async (response) => {
 // SERVICIOS DE TIENDAS 
 // --------------------------
 
-// GET /api/tienda/ -> Listar todas
 export const getTiendas = async () => {
     try {
         const response = await fetch(`${BASE_URL}/tienda/`, {
@@ -37,7 +36,6 @@ export const getTiendas = async () => {
     }
 };
 
-// GET /api/tienda/{id}
 export const buscarTienda = async (id) => {
     try {
         const response = await fetch(`${BASE_URL}/tienda/${id}`, {
@@ -51,7 +49,6 @@ export const buscarTienda = async (id) => {
     }
 };
 
-// GET /api/tienda/filtrar?cadenaId=X&localidadId=Y&zonaId=Z
 export const filtrarTiendas = async (cadenaId, localidadId, zonaId) => {
     try {
         const params = new URLSearchParams();
@@ -70,13 +67,12 @@ export const filtrarTiendas = async (cadenaId, localidadId, zonaId) => {
     }
 };
 
-// POST /api/tienda/guardar -
 export const guardarTienda = async (dataTienda) => {
     try {
         const response = await fetch(`${BASE_URL}/tienda/guardar`, {
             method: 'POST',
             headers: getAuthHeaders(),
-            body: JSON.stringify(dataTienda) // Para el record
+            body: JSON.stringify(dataTienda) 
         });
 
         if (response.ok) {
@@ -91,7 +87,6 @@ export const guardarTienda = async (dataTienda) => {
     }
 };
 
-// DELETE /api/tienda/eliminar/{id}
 export const eliminarTienda = async (idTienda) => {
     try {
         const response = await fetch(`${BASE_URL}/tienda/eliminar/${idTienda}`, {
@@ -107,10 +102,9 @@ export const eliminarTienda = async (idTienda) => {
 };
 
 // --------------------------
-// filtros
+// SERVICIOS AUXILIARES
 // -----------------------------
 
-// GET /api/cadenas/
 export const getCadenas = async () => {
     try {
         const response = await fetch(`${BASE_URL}/cadenas/`, {
@@ -124,7 +118,6 @@ export const getCadenas = async () => {
     }
 };
 
-// GET /api/zonas/
 export const getZonas = async () => {
     try {
         const response = await fetch(`${BASE_URL}/zonas/`, {
@@ -138,7 +131,6 @@ export const getZonas = async () => {
     }
 };
 
-// GET /api/localidades/
 export const getLocalidades = async () => {
     try {
         const response = await fetch(`${BASE_URL}/localidades/`, {
@@ -178,7 +170,6 @@ export const getMunicipios = async () => {
     }
 }
 
-// GET /api/usuarios/coordinadores
 export const getCoordinadores = async () => {
     try {
         const response = await fetch(`${BASE_URL}/usuarios/coordinadores`, {
@@ -192,7 +183,6 @@ export const getCoordinadores = async () => {
     }
 };
 
-// GET /api/usuarios/capitanes
 export const getCapitanes = async () => {
     try {
         const response = await fetch(`${BASE_URL}/usuarios/capitanes`, {
