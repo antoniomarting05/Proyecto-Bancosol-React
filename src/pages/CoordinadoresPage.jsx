@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getCoordinadores, eliminarCoordinadores } from '../services/coordinadorService';
 
 import '../styles/global.css';
-import '../components/coordinadores.css';
+import '../styles/coordinadores.css';
 
 export default function CoordinadoresPage() {
     const [coordinadores, setCoordinadores] = useState([]);

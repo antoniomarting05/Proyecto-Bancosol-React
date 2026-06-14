@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { ProveedorAuten } from '../auth/proveedorAuten';
 import Navbar from './Navbar';
 import RutaProtegida from './RutaProtegida'; 
 import LoginPage from '../pages/AuthPage';
@@ -13,7 +14,7 @@ export default function AppLayout() {
   const esPantallaLogin = location.pathname === '/login';
 
   return (
-    <>
+    <ProveedorAuten>
       {!esPantallaLogin && <Navbar />}
 
       <div className="page-content" style={{ padding: esPantallaLogin ? '0px' : '20px' }}>
@@ -31,6 +32,6 @@ export default function AppLayout() {
 
         </Routes>
       </div>
-    </>
+    </ProveedorAuten>
   );
 }
